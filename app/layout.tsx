@@ -31,12 +31,12 @@ export default function RootLayout({
       lang="en"
       className={cn("min-h-screen", "h-full", "antialiased", schibstedGrotesk.variable, martianMono.variable, "font-sans", geist.variable)}
     >
-      <body className="min-h-full flex flex-col">
+      <body className="relative min-h-full flex flex-col overflow-x-hidden">
 
-<div className="absolute inset-0 top-0 z-[-1] min-h-screen">
+<div className="fixed inset-0 -z-10 pointer-events-none">
   <LightRays
     raysOrigin="top-center"
-    raysColor="#ffffff"
+    raysColor="#94fffb"
     raysSpeed={1}
     lightSpread={0.5}
     rayLength={3}
