@@ -3,8 +3,9 @@ import { Schibsted_Grotesk, Martian_Mono, Geist } from "next/font/google";
 import "./globals.css";
 import { cn } from "@/lib/utils";
 import LightRays from "@/components/LightRays";
+import Navbar from "@/components/Navbar";
 
-const geist = Geist({subsets:['latin'],variable:'--font-sans'});
+const geist = Geist({ subsets: ['latin'], variable: '--font-sans' });
 
 const schibstedGrotesk = Schibsted_Grotesk({
   variable: "--font-schibsted-grotesk",
@@ -32,30 +33,30 @@ export default function RootLayout({
       className={cn("min-h-screen", "h-full", "antialiased", schibstedGrotesk.variable, martianMono.variable, "font-sans", geist.variable)}
     >
       <body className="relative min-h-full flex flex-col overflow-x-hidden">
+        <Navbar />
+        <div className="fixed inset-0 -z-10 pointer-events-none">
+          <LightRays
+            raysOrigin="top-center"
+            raysColor="#94fffb"
+            raysSpeed={1}
+            lightSpread={0.5}
+            rayLength={3}
+            followMouse={true}
+            mouseInfluence={0.1}
+            noiseAmount={0}
+            distortion={0}
+            className="custom-rays"
+            pulsating={false}
+            fadeDistance={1}
+            saturation={1}
+          />
+        </div>
 
-<div className="fixed inset-0 -z-10 pointer-events-none">
-  <LightRays
-    raysOrigin="top-center"
-    raysColor="#94fffb"
-    raysSpeed={1}
-    lightSpread={0.5}
-    rayLength={3}
-    followMouse={true}
-    mouseInfluence={0.1}
-    noiseAmount={0}
-    distortion={0}
-    className="custom-rays"
-    pulsating={false}
-    fadeDistance={1}
-    saturation={1}
-/>
-</div>
+        <main>
+          {children}
+        </main>
 
-    <main>
-        {children}
-    </main>
-        
-        </body>
+      </body>
     </html>
   );
 }
