@@ -1,5 +1,7 @@
+'use client'
 import Image from "next/image"
 import Link from "next/link"
+import posthog from "posthog-js"
 
 
 const Navbar = () => {
@@ -13,9 +15,9 @@ const Navbar = () => {
                 </Link>
                 </div>
                 <div className="flex gap-6">
-                <Link href='/'>Home</Link>
-                <Link href='/'>Events</Link>
-                <Link href='/'>Create Event</Link>
+                <Link href='/' onClick={() => posthog.capture('nav_link_clicked', { link: 'Home' })}>Home</Link>
+                <Link href='/' onClick={() => posthog.capture('nav_link_clicked', { link: 'Events' })}>Events</Link>
+                <Link href='/' onClick={() => posthog.capture('nav_link_clicked', { link: 'Create Event' })}>Create Event</Link>
                 </div>
             </nav>
         </header>

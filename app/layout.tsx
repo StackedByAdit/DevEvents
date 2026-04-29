@@ -38,16 +38,16 @@ export default function RootLayout({
           <LightRays
             raysOrigin="top-center"
             raysColor="#94fffb"
-            raysSpeed={1}
-            lightSpread={0.5}
+            raysSpeed={1.5}
+            lightSpread={0.9}
             rayLength={3}
             followMouse={true}
             mouseInfluence={0.1}
-            noiseAmount={0}
+            noiseAmount={0.3}
             distortion={0}
             className="custom-rays"
             pulsating={false}
-            fadeDistance={1}
+            fadeDistance={1.2}
             saturation={1}
           />
         </div>
