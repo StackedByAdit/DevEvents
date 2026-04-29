@@ -18,9 +18,6 @@ declare global {
   var mongooseCache: MongooseCache | undefined;
 }
 
-/**
- * MongoDB connection string from environment variables.
- */
 const uri = process.env.uri;
 
 if (!uri) {
