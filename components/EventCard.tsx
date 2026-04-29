@@ -10,16 +10,31 @@ interface Props {
     attendees: number;
     price: string;
     image: string;
+    time : string;
     description: string;
 }
 
-const EventCard = ({ title, image }: Props) => {
+const EventCard = ({ title, image, date, location, category, attendees, price, description, time }: Props) => {
 
     return (
 
         <Link href={'/events'} id="event-card">
             <Image src={image} alt={title} width={410} height={300} className="poster" />
+
+            <div className="flex flex-row gap-2">
+                <Image src="/icons/pin.svg" alt="location" width={14} height={14}/>
+                <p>{location}</p>
+            </div>
             <p className="title">{title}</p>
+
+            <div className="datetime">
+                <div>
+                    <Image src="/icons/calendar.svg" alt="date" width={14} height={14}/>
+                    <p>{date}</p>
+
+                    <p>{time}</p>
+                </div>
+            </div>
         </Link>
     )
 }
