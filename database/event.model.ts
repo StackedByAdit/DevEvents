@@ -108,6 +108,23 @@ const EventSchema = new Schema<IEvent>(
   }
 );
 
+EventSchema.pre('save', async function () {
+  const event = this as IEvent;
+
+  if (event.isModified('title') || event.isNew) {
+    event.slug = generateSlug(event.title);
+  }
+
+  if (event.isModified('date')) {
+    event.date = normalizeDate(event.date);
+  }
+
+  if (event.isModified('time')) {
+    event.time = normalizeTime(event.time);
+  }
+});
+
+
 EventSchema.index({ slug: 1 }, { unique: true });
 
 EventSchema.index({ date: 1, mode: 1 });
