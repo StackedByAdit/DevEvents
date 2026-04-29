@@ -14,9 +14,10 @@ interface Props {
     image: string;
     time : string;
     description: string;
+    slug : string;
 }
 
-const EventCard = ({ title, image, date, location, category, attendees, price, description, time }: Props) => {
+const EventCard = ({ title, image, date, location, category, price, time }: Props) => {
 
     return (
 
