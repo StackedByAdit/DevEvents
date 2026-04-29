@@ -1,10 +1,7 @@
 import EventCard from '@/components/EventCard'
 import ExploreBtn from '@/components/ExploreBtn'
+import { events } from '@/lib/constants'
 
-const events = [
-  { image: '/images/event1.png', title: 'Event 1' },
-  { image: '/images/event2.png', title: 'Event 2' },
-]
 const page = () => {
   return (
     <section>
@@ -17,7 +14,7 @@ const page = () => {
 
 
 
-        <ul className='events'>
+        <ul className='events list-none'>
           {events.map((event) => (
             <li key={event.title}>
               <EventCard {...event} />
