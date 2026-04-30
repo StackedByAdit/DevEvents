@@ -28,6 +28,8 @@ if (!uri) {
 
 const MONGODB_URI : string = uri;
 
+console.log(MONGODB_URI);
+
 /**
  * Reuse cache if it already exists.
  */
