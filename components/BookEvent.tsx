@@ -9,7 +9,6 @@ const BookEvent = () => {
     const handleSubmit = (e : React.FormEvent) => {
         e.preventDefault();
 
-
         setTimeout(() => {
             setSubmitted(true);
         }, 1000)
