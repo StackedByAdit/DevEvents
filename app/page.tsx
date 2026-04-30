@@ -2,11 +2,18 @@ import EventCard from '@/components/EventCard'
 import ExploreBtn from '@/components/ExploreBtn'
 import { events } from '@/lib/constants'
 
-const page = () => {
+const BASE_URL = process.env.BASE_URL
+
+const page = async () => {
+
+  const response = await fetch(`${BASE_URL}/api/events`);
+
+  const { events } = await response.json();
+
   return (
     <section>
-      <h1 className='text-center'>The Hub for Every Dev <br /> Event you Cant Miss</h1>
-      <p className='text-center mt-5'>Hackathons, Meetups and Conferences All in One Place</p>
+      <h1 className='text-center'>The Hub for Every Dev <br/> Event you Cant Miss </h1>
+      <p className='text-center mt-5'>Hackathons, Meetups and Conferences All in One Place </p>
       <ExploreBtn />
 
       <div className='mt-20 space-y-7'>

@@ -2,37 +2,25 @@
 import Image from "next/image";
 import Link from "next/link";
 import posthog from "posthog-js";
+import { IEvent } from "@/database/event.model";
 
-interface Props {
-    id: string;
-    title: string;
-    date: string;
-    location: string;
-    category: string;
-    attendees: number;
-    price: string;
-    image: string;
-    time : string;
-    description: string;
-    slug : string;
-}
+type Props = Pick<IEvent, "title" | "image" | "date" | "location" | "time" | "slug" | "mode">;
 
-const EventCard = ({ title, image, date, location, category, price, time }: Props) => {
+const EventCard = ({ title, image, date, location, mode, time }: Props) => {
 
     return (
-
-        <Link href={'/events'} id="event-card" onClick={() => posthog.capture('event_card_clicked', { event_title: title, event_category: category, event_location: location, event_date: date, event_price: price })}>
+        <Link href={'/events'} id="event-card" onClick={() => posthog.capture('event_card_clicked', { event_title: title, event_mode: mode, event_location: location, event_date: date })}>
             <Image src={image} alt={title} width={410} height={300} className="poster" />
 
             <div className="flex flex-row gap-2">
-                <Image src="/icons/pin.svg" alt="location" width={14} height={14}/>
+                <Image src="/icons/pin.svg" alt="location" width={14} height={14} />
                 <p>{location}</p>
             </div>
             <p className="title">{title}</p>
 
             <div className="datetime">
                 <div>
-                    <Image src="/icons/calendar.svg" alt="date" width={14} height={14}/>
+                    <Image src="/icons/calendar.svg" alt="date" width={14} height={14} />
                     <p>{date}</p>
 
                     <p>{time}</p>
