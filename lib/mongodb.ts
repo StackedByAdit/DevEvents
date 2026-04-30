@@ -18,7 +18,7 @@ declare global {
   var mongooseCache: MongooseCache | undefined;
 }
 
-const uri = process.env.uri;
+const uri = process.env.MONGODB_URI;
 
 if (!uri) {
   throw new Error(
