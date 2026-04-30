@@ -1,8 +1,8 @@
 import EventCard from '@/components/EventCard'
 import ExploreBtn from '@/components/ExploreBtn'
-import { events } from '@/lib/constants'
+import { IEvent } from '@/database/event.model';
 
-const BASE_URL = process.env.BASE_URL
+const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL
 
 const page = async () => {
 
@@ -22,7 +22,7 @@ const page = async () => {
 
 
         <ul className='events list-none'>
-          {events.map((event) => (
+          {events.map((event : IEvent) => (
             <li key={event.title}>
               <EventCard {...event} />
             </li>
