@@ -14,7 +14,7 @@ const EventDetailItem = ({ icon, alt, label }: { icon: string; alt: string; labe
     </div>
 )
 
-const EventAgenda = ({ agendaItems } : { agendaItems :  string[]}) => (
+const EventAgenda = ({ agendaItems }: { agendaItems: string[] }) => (
     <div className="agenda">
         <h2>Agenda</h2>
         <ul>
@@ -25,11 +25,11 @@ const EventAgenda = ({ agendaItems } : { agendaItems :  string[]}) => (
     </div>
 )
 
-const EventTags = ({tags } : {tags : string[]}) => (
+const EventTags = ({ tags }: { tags: string[] }) => (
     <div className="flex flex-row gap-1.5 flex-wrap">
 
         {tags.map((tag) => (
-                <div className="pill" key={tag}>{tag}</div>
+            <div className="pill" key={tag}>{tag}</div>
         ))}
     </div>
 )
@@ -47,7 +47,10 @@ const EventDetailsPage = async ({ params }: { params: Promise<{ slug: string }> 
 
     const bookings = 10;
 
-    const similarEvents : IEvent[] = await getSimilarEventsBySlug(slug);
+    const similarEvents: IEvent[] = await getSimilarEventsBySlug(slug);
+
+    console.log(similarEvents);
+
     return (
         <section id="event">
             <div className="header">
@@ -77,14 +80,14 @@ const EventDetailsPage = async ({ params }: { params: Promise<{ slug: string }> 
 
                     </section>
 
-                    <EventAgenda agendaItems={JSON.parse(agenda[0])} />
+                    <EventAgenda agendaItems={agenda} />
 
                     <section className="flex-col-gap-2">
                         <h2>About the Organizer</h2>
                         <p>{oraganizer}</p>
                     </section>
 
-                    <EventTags tags={JSON.parse(tags[0])} />
+                    <EventTags tags={tags} />
                 </div>
                 {/* Right side - booking form*/}
                 <aside className="booking">
@@ -92,27 +95,27 @@ const EventDetailsPage = async ({ params }: { params: Promise<{ slug: string }> 
                         <h2>Book Your Spot</h2>
                         {bookings > 10 ? (
                             <p className="text-sm">
-                                Join { bookings } people who have already booked their spot!
+                                Join {bookings} people who have already booked their spot!
                             </p>
                         ) : (
                             <p className="text-sm">Be the first to book your spot!</p>
                         )}
 
-                        <BookEvent/>
+                        <BookEvent />
                     </div>
                 </aside>
             </div>
 
-        <div className="flex w-full flex-col gap-4 pt-20">
-            <h2>
-                Similar Events
-            </h2>
-            <div className="events">
-                {similarEvents.length > 0  && similarEvents.map((similarEvent : IEvent) => (
-                    <EventCard key={similarEvent.id} { ...similarEvent} />
-                ))}
+            <div className="flex w-full flex-col gap-4 pt-20">
+                <h2>
+                    Similar Events
+                </h2>
+                <div className="events">
+                    {similarEvents.length > 0 && similarEvents.map((similarEvent: IEvent) => (
+                        <EventCard key={similarEvent.id} {...similarEvent} />
+                    ))}
+                </div>
             </div>
-        </div>
 
         </section>
     )
