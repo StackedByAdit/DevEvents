@@ -1,12 +1,18 @@
 import BookEvent from "@/components/BookEvent";
 import EventCard from "@/components/EventCard";
 import { IEvent } from "@/database/event.model";
-import { getSimilarEventsBySlug } from "@/lib/actions/event.actions";
+import { getAllEvents, getEventBySlug, getSimilarEventsBySlug } from "@/lib/actions/event.actions";
 import { cacheLife } from "next/cache";
 import Image from "next/image";
 import { notFound } from "next/navigation";
 
-const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL;
+export async function generateStaticParams() {
+  const events = await getAllEvents();
+
+  return events
+    .filter((event): event is IEvent => Boolean(event?.slug))
+    .map((event) => ({ slug: event.slug }));
+}
 
 const EventDetailItem = ({ icon, alt, label }: { icon: string; alt: string; label: string }) => (
   <div className="flex-row-gap-2 items-center">
@@ -41,8 +47,7 @@ const EventDetailsPage = async ({ params }: { params: Promise<{ slug: string }> 
   cacheLife('minutes')
   const { slug } = await params;
 
-  const request = await fetch(`${BASE_URL}/api/events/${slug}`);
-  const { event } = await request.json();
+ const event = await getEventBySlug(slug);
 
   if (!event?.description) return notFound();
 
