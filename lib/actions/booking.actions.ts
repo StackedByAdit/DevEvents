@@ -7,11 +7,11 @@ import connectDB from "../mongodb";
 export const createBooking = async ({ eventId, slug, email } : { eventId : string; slug : string; email : string }) => {
     try {
         await connectDB();
-        const booking = (await Booking.create({eventId, slug, email})).lean()
+        await Booking.create({eventId, slug, email})
 
-        return { success : true, booking };
+        return { success : true};
     } catch (e) {
         console.error('create booking failed', e);
-        return { success : false, error: e};
+        return { success : false};
     }
 }
