@@ -47,7 +47,7 @@ const EventDetailsPage = async ({ params }: { params: Promise<{ slug: string }> 
   if (!event?.description) return notFound();
 
   const {
-    id,
+    _id,
     slug: eventSlug,
     description,
     image,
@@ -110,7 +110,7 @@ const EventDetailsPage = async ({ params }: { params: Promise<{ slug: string }> 
               <p className="text-sm">Be the first to book your spot!</p>
             )}
 
-            <BookEvent eventId={id} slug={eventSlug} />
+            <BookEvent eventId={String(_id)} slug={eventSlug} />
           </div>
         </aside>
       </div>
