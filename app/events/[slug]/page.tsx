@@ -34,8 +34,6 @@ const EventTags = ({tags } : {tags : string[]}) => (
     </div>
 )
 
-
-
 const EventDetailsPage = async ({ params }: { params: Promise<{ slug: string }> }) => {
 
     const { slug } = await params;
@@ -98,7 +96,7 @@ const EventDetailsPage = async ({ params }: { params: Promise<{ slug: string }> 
                             <p className="text-sm">Be the first to book your spot!</p>
                         )}
 
-                        <BookEvent/>
+                        <BookEvent eventId={event.id} slug={event.slug} />
                     </div>
                 </aside>
             </div>
